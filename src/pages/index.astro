@@ -80,8 +80,9 @@ const metadata = {
   <!-- Content Widget **************** -->
 
   <Content
+    id="about-us"
     isReversed
-    tagline="Inside template"
+    tagline="About Us"
     title="AstroWind's Blueprint: Fun Meets Functionality!"
     items={[
       {
@@ -119,6 +120,7 @@ const metadata = {
   <!-- Steps Widget ****************** -->
 
   <Steps
+    id="contact-us"
     title="Get your dream website up and running in no time with AstroWind."
     items={[
       {
@@ -199,23 +201,23 @@ const metadata = {
   <!-- CallToAction Widget *********** -->
 
   <CallToAction
+    id="donate"
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
+        text: 'Donate',
+        href: 'https://donate.stripe.com/eVadRn3ZI43u86c3cc',
         target: '_blank',
-        icon: 'tabler:download',
+        //icon: 'tabler:download',
       },
     ]}
   >
     <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+      Pay your Bill / Donate
     </Fragment>
 
     <Fragment slot="subtitle">
-      Be testing very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
+      Pay Due Pledges using Credit Card or Apple Pay on mobile
     </Fragment>
   </CallToAction>
 </Layout>

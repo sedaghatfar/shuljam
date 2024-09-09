@@ -4,22 +4,22 @@ export const headerData = {
   links: [
     {
       text: 'About us',
-      href: '#',  // Placeholder for now
+      href: '#about-us',
     },
     {
       text: 'Gallery',
-      href: '#',  // Placeholder for now
+      href: 'https://www.instagram.com/mywifesadoctor/',
     },
     {
       text: 'Contact',
-      href: '#',  // Placeholder for now
+      href: '#contact-us',
     },
     {
       text: 'Donate',
-      href: '#',  // Placeholder for now
+      href: '#donate', 
     },
   ],
-  actions: [{ text: 'Donate Now', href: '#', target: '_blank' }],  // Placeholder action
+  actions: [{ text: 'Donate Now', href: '#donate' }],  // Placeholder action
 };
 
 
