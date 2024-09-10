@@ -1,30 +1,32 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 import ShabbatTimes from '~/components/widgets/ShabbatTimes.astro';
+
+
+//import Steps from '~/components/widgets/Steps.astro';
+//import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+//import FAQs from '~/components/widgets/FAQs.astro';
+//import Stats from '~/components/widgets/Stats.astro';
 
 const metadata = {
   title: 'ShulJam — Free template for creating Shul websites with Astro + Tailwind CSS',
   ignoreTitleTemplate: true,
 };
+
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
   <Hero
-    actions={[
+   {/* actions={[
       {
         variant: 'primary',
         text: 'Get template',
@@ -33,19 +35,17 @@ const metadata = {
         icon: 'tabler:download',
       },
       { text: 'Learn more', href: '#features' },
-    ]}
+    ]}*/}
     image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating Shul Websites </span>
+      Open Source Template for Creating Shul Websites </span>
       <!--<span class="text-accent dark:text-white highlight"> Astro 4.0</span> + Tailwind CSS-->
     </Fragment>
 
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
-        <span class="font-semibold">ShulJam</span> is a free, customizable and production-ready template for Astro 4.0
-        + Tailwind CSS.</span
-      >
+        <span class="font-semibold">ShulJam</span> is a free, customizable and production-ready template</span>
       <span class="block mb-1 sm:hidden font-bold text-blue-600">ShulJam: Production-ready.</span>
       Suitable for Small to medium shuls looking for a web presence without the hassle.
     </Fragment>
@@ -59,20 +59,23 @@ const metadata = {
 
   <Features
   id="features"
-  tagline="Features"
+  tagline="Come Join Us!"
   title="What you get with ShulJam"
-  subtitle="One of the most professional and comprehensive templates currently on the market."
+  subtitle="Daily Minyanim"
   items={[
     {
       title: 'Zmanim for 11023',
-      icon: 'tabler:brand-tailwind',
-      customContent: 'shabbat-times'  // Placeholder to identify where to render ShabbatTimes
+     // icon: 'tabler:brand-tailwind',
+      customContent: 'shabbat-times'  
     },
     {
-      title: 'Performant',
+      title: 'Minyanim',
       description:
-        'JAMstack sites are faster and more secure than WordPress. They deliver pre-built static files via a CDN, ensuring quick load times and better scalability.',
-      icon: 'tabler:rocket',
+        'Netz Minyans starting 30 minutes before Sunrise<br />' +
+        'Second Minyan at 8 am and 9 am Weekends<br />' +
+        'Mincha is at 7pm During the Summer<br />' +
+        '30 minutes before Sunset the rest of the year<br />',
+      //icon: 'tabler:rocket',
     },
   ]}
   />
@@ -80,100 +83,71 @@ const metadata = {
   <!-- Content Widget **************** -->
 
   <Content
-    id="about-us"
-    isReversed
-    tagline="About Us"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
-    items={[
-      {
-        title: 'Built on top of Astro 4.0',
-        description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
-      },
-      {
-        title: 'Styled using Tailwind CSS',
-        description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
-      },
-      {
-        title: 'Cross-browser compatibility',
-        description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-      Gain a competitive advantage by incorporating industry leading practices
-    </Fragment>
+  id="about-us"
+  isReversed
+  tagline="About Us"
+  title="Welcome to ShulJam!"
+  items={[
+    {
+      title: 'A Community of Connection and Tradition',
+      description:
+        'ShulJam is more than just a place of prayer; it’s a vibrant community where tradition meets modern life. We offer a warm and welcoming environment for people of all backgrounds, ensuring a meaningful spiritual experience for everyone.',
+    },
+    {
+      title: 'Daily Minyanim and Learning Opportunities',
+      description:
+        'We host daily services, including Shacharit, Mincha, and Maariv, along with regular Torah classes for both beginners and advanced learners. Our diverse programming is designed to inspire personal growth and foster community connection.',
+    },
+    {
+      title: 'A Center for Family and Education',
+      description:
+        'ShulJam is proud to be a center of Jewish life for families. We offer youth programs, family events, and educational opportunities for all ages, helping to nurture the next generation of Jewish leaders.',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    alt: 'Colorful Image of ShulJam',
+  }}
+>
+  <Fragment slot="content">
+    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building a Stronger Community Together</h3>
+    Join us at ShulJam and be part of a growing community where faith, friendship, and learning come together. Whether you are here for daily prayer, learning, or family events, we welcome you with open arms.
+  </Fragment>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+  </Fragment>
+</Content>
+
 
 
   <!-- Steps Widget ****************** -->
 
-  <Steps
-    id="contact-us"
-    title="Get your dream website up and running in no time with AstroWind."
-    items={[
-      {
-        title: 'Step 1: <span class="font-medium">Download</span>',
-        description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
-      },
-      {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
-        description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
-        description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
-      },
-      {
-        title: 'Ready!',
-        icon: 'tabler:check',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
-    }}
-  />
+
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
+    title="The Best Ways To Reach Us"
+    id="contact-us"
+    subtitle="While not as easy to reach as Hashem we try to be as accessible as possible."
+    tagline="Contact Us"
     items={[
       {
-        title: 'Content',
+        title: 'Location',
         description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
+          "We are located at 15201 Maple Systems Road, Cypress Creek",
+        icon: 'flat-color-icons:department',
       },
       {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
+        title: 'Email',
+        description: 'Join our mailing list for community updates.',
+        icon: 'flat-color-icons:multiple-devices',
       },
       {
         title: 'Contact',
         description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
+          'Join our Whatsapp group by messaging<br />' +  'XXX-XXX-XXXX on WhatsApp.',
         icon: 'flat-color-icons:business-contact',
       },
     ]}
@@ -189,7 +163,8 @@ const metadata = {
 
   <!-- Stats Widget ****************** -->
 
-  <Stats
+   {/* 
+   <Stats
     stats={[
       { title: 'Downloads', amount: '132K' },
       { title: 'Stars', amount: '24.8K' },
@@ -197,7 +172,7 @@ const metadata = {
       { title: 'Users', amount: '48.4K' },
     ]}
   />
-
+*/}
   <!-- CallToAction Widget *********** -->
 
   <CallToAction
@@ -217,7 +192,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Pay Due Pledges using Credit Card or Apple Pay on mobile
+      Pay Due Pledges using Credit Card or Venmo @[shuljam]
     </Fragment>
   </CallToAction>
 </Layout>
