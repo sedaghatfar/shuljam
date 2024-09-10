@@ -1,30 +1,32 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 import ShabbatTimes from '~/components/widgets/ShabbatTimes.astro';
+
+
+//import Steps from '~/components/widgets/Steps.astro';
+//import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+//import FAQs from '~/components/widgets/FAQs.astro';
+//import Stats from '~/components/widgets/Stats.astro';
 
 const metadata = {
   title: 'ShulJam — Free template for creating Shul websites with Astro + Tailwind CSS',
   ignoreTitleTemplate: true,
 };
+
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
   <Hero
-    actions={[
+   {/* actions={[
       {
         variant: 'primary',
         text: 'Get template',
@@ -33,19 +35,17 @@ const metadata = {
         icon: 'tabler:download',
       },
       { text: 'Learn more', href: '#features' },
-    ]}
+    ]}*/}
     image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating Shul Websites </span>
+      Open Source Template for Creating Shul Websites </span>
       <!--<span class="text-accent dark:text-white highlight"> Astro 4.0</span> + Tailwind CSS-->
     </Fragment>
 
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
-        <span class="font-semibold">ShulJam</span> is a free, customizable and production-ready template for Astro 4.0
-        + Tailwind CSS.</span
-      >
+        <span class="font-semibold">ShulJam</span> is a free, customizable and production-ready template</span>
       <span class="block mb-1 sm:hidden font-bold text-blue-600">ShulJam: Production-ready.</span>
       Suitable for Small to medium shuls looking for a web presence without the hassle.
     </Fragment>
@@ -59,14 +59,14 @@ const metadata = {
 
   <Features
   id="features"
-  tagline="Features"
+  tagline="Come Join Us!"
   title="What you get with ShulJam"
-  subtitle="One of the most professional and comprehensive templates currently on the market."
+  subtitle="Daily Minyanim"
   items={[
     {
       title: 'Zmanim for 11023',
-      icon: 'tabler:brand-tailwind',
-      customContent: 'shabbat-times'  // Placeholder to identify where to render ShabbatTimes
+     // icon: 'tabler:brand-tailwind',
+      customContent: 'shabbat-times'  
     },
     {
       title: 'Minyanim',
@@ -75,7 +75,7 @@ const metadata = {
         'Second Minyan at 8 am and 9 am Weekends<br />' +
         'Mincha is at 7pm During the Summer<br />' +
         '30 minutes before Sunset the rest of the year<br />',
-      icon: 'tabler:rocket',
+      //icon: 'tabler:rocket',
     },
   ]}
   />
@@ -137,17 +137,17 @@ const metadata = {
         title: 'Location',
         description:
           "We are located at 15201 Maple Systems Road, Cypress Creek",
-        icon: 'flat-color-icons:document',
+        icon: 'flat-color-icons:department',
       },
       {
         title: 'Email',
         description: 'Join our mailing list for community updates.',
-        icon: 'flat-color-icons:currency-exchange',
+        icon: 'flat-color-icons:multiple-devices',
       },
       {
         title: 'Contact',
         description:
-          'Join our Whatsapp group by messaging <XXX-XXX-XXXX> on WhatsApp.',
+          'Join our Whatsapp group by messaging<br />' +  'XXX-XXX-XXXX on WhatsApp.',
         icon: 'flat-color-icons:business-contact',
       },
     ]}
@@ -163,7 +163,8 @@ const metadata = {
 
   <!-- Stats Widget ****************** -->
 
-  <Stats
+   {/* 
+   <Stats
     stats={[
       { title: 'Downloads', amount: '132K' },
       { title: 'Stars', amount: '24.8K' },
@@ -171,7 +172,7 @@ const metadata = {
       { title: 'Users', amount: '48.4K' },
     ]}
   />
-
+*/}
   <!-- CallToAction Widget *********** -->
 
   <CallToAction
@@ -191,7 +192,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Pay Due Pledges using Credit Card or Venmo @shuljam
+      Pay Due Pledges using Credit Card or Venmo @[shuljam]
     </Fragment>
   </CallToAction>
 </Layout>

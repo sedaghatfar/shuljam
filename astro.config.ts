@@ -43,6 +43,8 @@ export default defineConfig({
           'voice-presentation',
           'business-contact',
           'database',
+          'multiple-devices', // Add the 'multiple-devices' icon from Flat Color Icons
+          'department',
         ],
       },
     }),
