@@ -1,0 +1,22 @@
+name: Daily Deployment
+
+on:
+  schedule:
+    # Schedule the job to run at 3 AM EST every day
+    # 8 AM UTC is equivalent to 3 AM EST (depending on daylight savings time)
+    - cron: '0 8 * * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Trigger a Vercel redeploy using the Vercel CLI or API
+      - name: Deploy to Vercel
+        run: |
+          npm install -g vercel
+          vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+
