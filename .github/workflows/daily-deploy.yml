@@ -2,9 +2,14 @@ name: Daily Deployment
 
 on:
   schedule:
-    # Schedule the job to run at 3 AM EST every day
-    # 8 AM UTC is equivalent to 3 AM EST (depending on daylight savings time)
+    # Schedule the job to run at 3 AM EST every day (8 AM UTC)
     - cron: '0 8 * * *'
+  
+  workflow_dispatch: # Allows manual triggering of the workflow
+    inputs:
+      deploy:
+        description: "Manually trigger deployment"
+        required: false
 
 jobs:
   deploy:
@@ -19,4 +24,3 @@ jobs:
         run: |
           npm install -g vercel
           vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
-
