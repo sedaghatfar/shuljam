@@ -1,9 +1,17 @@
 ---
-const fetchShabbatTimes = async () => {
+import { onMount } from 'astro:jsx';
+
+let shabbatTimes = {
+  sunrise: 'Loading...',
+  sofZmanShma: 'Loading...',
+  chatzot: 'Loading...',
+  sunset: 'Loading...',
+  tzeit42min: 'Loading...',
+};
+
+onMount(async () => {
   try {
-    const response = await fetch(
-      'https://www.hebcal.com/zmanim?cfg=json&zip=11023' // Replace with your desired zip code
-    );
+    const response = await fetch('https://www.hebcal.com/zmanim?cfg=json&zip=11023'); // Replace with your desired zip code
     const data = await response.json();
 
     const formatTime = (timeString) => {
@@ -16,7 +24,7 @@ const fetchShabbatTimes = async () => {
       }).format(date);
     };
 
-    return {
+    shabbatTimes = {
       sunrise: formatTime(data.times.sunrise),
       sofZmanShma: formatTime(data.times.sofZmanShma),
       chatzot: formatTime(data.times.chatzot),
@@ -25,23 +33,21 @@ const fetchShabbatTimes = async () => {
     };
   } catch (error) {
     console.error('Error fetching Shabbat times:', error);
-    return {
-      sunrise: 'N/A',
-      sofZmanShma: 'N/A',
-      chatzot: 'N/A',
-      sunset: 'N/A',
-      tzeit42min: 'N/A',
+    shabbatTimes = {
+      sunrise: 'Error',
+      sofZmanShma: 'Error',
+      chatzot: 'Error',
+      sunset: 'Error',
+      tzeit42min: 'Error',
     };
   }
-};
-
-const shabbatTimes = await fetchShabbatTimes();
+});
 ---
 
 <div class="text-center mt-3 text-muted">
-    <p>Sunrise: {shabbatTimes.sunrise}</p>
-    <p>Sof Zman Shma: {shabbatTimes.sofZmanShma}</p>
-    <p>Chatzot: {shabbatTimes.chatzot}</p>
-    <p>Sunset: {shabbatTimes.sunset}</p>
-    <p>Tzeit 42min: {shabbatTimes.tzeit42min}</p>
+  <p>Sunrise: {shabbatTimes.sunrise}</p>
+  <p>Sof Zman Shma: {shabbatTimes.sofZmanShma}</p>
+  <p>Chatzot: {shabbatTimes.chatzot}</p>
+  <p>Sunset: {shabbatTimes.sunset}</p>
+  <p>Tzeit 42min: {shabbatTimes.tzeit42min}</p>
 </div>
