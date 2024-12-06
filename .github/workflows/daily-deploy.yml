@@ -1,10 +1,9 @@
 name: Daily Deployment
 on:
   schedule:
-    # Schedule the job to run at 3 AM EST every day (8 AM UTC)
     - cron: '0 8 * * *'
   
-  workflow_dispatch: # Allows manual triggering of the workflow
+  workflow_dispatch:
     inputs:
       deploy:
         description: "Manually trigger deployment"
@@ -21,6 +20,12 @@ jobs:
         with:
           node-version: '18'
       
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Build Project
+        run: npm run build
+      
       - name: Deploy to Vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -28,4 +33,4 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           npm install -g vercel
-          vercel deploy --prebuilt --prod --yes --token $VERCEL_TOKEN
+          vercel deploy --prod --yes --token $VERCEL_TOKEN
