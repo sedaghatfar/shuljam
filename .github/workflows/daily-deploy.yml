@@ -1,5 +1,4 @@
 name: Daily Deployment
-
 on:
   schedule:
     # Schedule the job to run at 3 AM EST every day (8 AM UTC)
@@ -10,17 +9,23 @@ on:
       deploy:
         description: "Manually trigger deployment"
         required: false
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      # Trigger a Vercel redeploy using the Vercel CLI or API
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
       - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           npm install -g vercel
-          vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+          vercel deploy --prebuilt --prod --yes --token $VERCEL_TOKEN
