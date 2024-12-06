@@ -9,100 +9,134 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 
 import ShabbatTimes from '~/components/widgets/ShabbatTimes.astro';
 
+
+//import Steps from '~/components/widgets/Steps.astro';
+//import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+//import FAQs from '~/components/widgets/FAQs.astro';
+//import Stats from '~/components/widgets/Stats.astro';
+
 const metadata = {
   title: 'ShulJam — Free template for creating Shul websites with Astro + Tailwind CSS',
   ignoreTitleTemplate: true,
 };
+
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
+
   <Hero
+   {/* actions={[
+      {
+        variant: 'primary',
+        text: 'Get template',
+        href: 'https://github.com/sedaghatfar/shuljam',
+        target: '_blank',
+        icon: 'tabler:download',
+      },
+      { text: 'Learn more', href: '#features' },
+    ]}*/}
     image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
   >
     <Fragment slot="title">
-      Open Source Template for Creating Shul Websites
+      Open Source Template for Creating Shul Websites </span>
+      <!--<span class="text-accent dark:text-white highlight"> Astro 4.0</span> + Tailwind CSS-->
     </Fragment>
+
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
-        <span class="font-semibold">ShulJam</span> is a free, customizable, and production-ready template.
-      </span>
-      Suitable for small to medium shuls looking for a web presence without the hassle.
+        <span class="font-semibold">ShulJam</span> is a free, customizable and production-ready template</span>
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">ShulJam: Production-ready.</span>
+      Suitable for Small to medium shuls looking for a web presence without the hassle.
     </Fragment>
   </Hero>
 
   <!-- Note Widget ******************* -->
+
   <Note />
 
   <!-- Features Widget *************** -->
+
   <Features
-    id="features"
-    tagline="Come Join Us!"
-    title="What you get with ShulJam"
-    subtitle="Daily Minyanim"
-    items={[
-      {
-        title: 'Zmanim for 11023',
-        customContent: () => <ShabbatTimes client:load />, // Ensure hydration
-      },
-      {
-        title: 'Minyanim',
-        description:
-          'Netz Minyan starting 20 minutes before Sunrise<br />' +
-          'Second Minyan at 8 am and 9 am Weekends<br />' +
-          'Mincha is at 7 pm During the Summer<br />' +
-          '30 minutes before Sunset the rest of the year<br />',
-      },
-    ]}
+  id="features"
+  tagline="Come Join Us!"
+  title="What you get with ShulJam"
+  subtitle="Daily Minyanim"
+  items={[
+    {
+      title: 'Zmanim for 11023',
+     // icon: 'tabler:brand-tailwind',
+      customContent: 'shabbat-times'  
+    },
+    {
+      title: 'Minyanim',
+      description:
+        'Netz Minyan starting 20 minutes before Sunrise<br />' +
+        'Second Minyan at 8 am and 9 am Weekends<br />' +
+        'Mincha is at 7 pm During the Summer<br />' +
+        '30 minutes before Sunset the rest of the year<br />',
+      //icon: 'tabler:rocket',
+    },
+  ]}
   />
 
   <!-- Content Widget **************** -->
+
   <Content
-    id="about-us"
-    isReversed
-    tagline="About Us"
-    title="Welcome to ShulJam!"
-    items={[
-      {
-        title: 'A Community of Connection and Tradition',
-        description:
-          'ShulJam is more than just a place of prayer; it’s a vibrant community where tradition meets modern life. We offer a warm and welcoming environment for people of all backgrounds, ensuring a meaningful spiritual experience for everyone.',
-      },
-      {
-        title: 'Daily Minyanim and Learning Opportunities',
-        description:
-          'We host daily services, including Shacharit, Mincha, and Maariv, along with regular Torah classes for both beginners and advanced learners. Our diverse programming is designed to inspire personal growth and foster community connection.',
-      },
-      {
-        title: 'A Center for Family and Education',
-        description:
-          'ShulJam is proud to be a center of Jewish life for families. We offer youth programs, family events, and educational opportunities for all ages, helping to nurture the next generation of Jewish leaders.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image of ShulJam',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building a Stronger Community Together</h3>
-      Join us at ShulJam and be part of a growing community where faith, friendship, and learning come together. Whether you are here for daily prayer, learning, or family events, we welcome you with open arms.
-    </Fragment>
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+  id="about-us"
+  isReversed
+  tagline="About Us"
+  title="Welcome to ShulJam!"
+  items={[
+    {
+      title: 'A Community of Connection and Tradition',
+      description:
+        'ShulJam is more than just a place of prayer; it’s a vibrant community where tradition meets modern life. We offer a warm and welcoming environment for people of all backgrounds, ensuring a meaningful spiritual experience for everyone.',
+    },
+    {
+      title: 'Daily Minyanim and Learning Opportunities',
+      description:
+        'We host daily services, including Shacharit, Mincha, and Maariv, along with regular Torah classes for both beginners and advanced learners. Our diverse programming is designed to inspire personal growth and foster community connection.',
+    },
+    {
+      title: 'A Center for Family and Education',
+      description:
+        'ShulJam is proud to be a center of Jewish life for families. We offer youth programs, family events, and educational opportunities for all ages, helping to nurture the next generation of Jewish leaders.',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    alt: 'Colorful Image of ShulJam',
+  }}
+>
+  <Fragment slot="content">
+    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building a Stronger Community Together</h3>
+    Join us at ShulJam and be part of a growing community where faith, friendship, and learning come together. Whether you are here for daily prayer, learning, or family events, we welcome you with open arms.
+  </Fragment>
+
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+  </Fragment>
+</Content>
+
+
+
+  <!-- Steps Widget ****************** -->
+
+
 
   <!-- Features2 Widget ************** -->
+
   <Features2
     title="The Best Ways To Reach Us"
     id="contact-us"
-    subtitle="While not as easy to reach as Hashem, we try to be as accessible as possible."
+    subtitle="While not as easy to reach as Hashem we try to be as accessible as possible."
     tagline="Contact Us"
     items={[
       {
         title: 'Location',
-        description: "We are located at 15201 Maple Systems Road, Cypress Creek",
+        description:
+          "We are located at 15201 Maple Systems Road, Cypress Creek",
         icon: 'flat-color-icons:department',
       },
       {
@@ -112,7 +146,8 @@ const metadata = {
       },
       {
         title: 'Contact',
-        description: 'Join our Whatsapp group by messaging<br />XXX-XXX-XXXX on WhatsApp.',
+        description:
+          'Join our Whatsapp group by messaging<br />' +  'XXX-XXX-XXXX on WhatsApp.',
         icon: 'flat-color-icons:business-contact',
       },
     ]}
@@ -122,7 +157,24 @@ const metadata = {
     </Fragment>
   </Features2>
 
+  <!-- HighlightedPosts Widget ****BlogLatestPosts*** -->
+
+  <!-- FAQs Widget ************FAQs******* -->
+
+  <!-- Stats Widget ****************** -->
+
+   {/* 
+   <Stats
+    stats={[
+      { title: 'Downloads', amount: '132K' },
+      { title: 'Stars', amount: '24.8K' },
+      { title: 'Forks', amount: '10.3K' },
+      { title: 'Users', amount: '48.4K' },
+    ]}
+  />
+*/}
   <!-- CallToAction Widget *********** -->
+
   <CallToAction
     id="donate"
     actions={[
@@ -131,12 +183,14 @@ const metadata = {
         text: 'Donate',
         href: 'https://donate.stripe.com/eVadRn3ZI43u86c3cc',
         target: '_blank',
+        //icon: 'tabler:download',
       },
     ]}
   >
     <Fragment slot="title">
       Pay your Bill / Donate
     </Fragment>
+
     <Fragment slot="subtitle">
       Pay Due Pledges using Credit Card or Venmo @[shuljam]
     </Fragment>
