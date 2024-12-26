@@ -1,52 +1,36 @@
 // src/pages/api/rebuild.ts
+import type { APIRoute } from 'astro';
+
 export const prerender = false;
 
-// Define the response type
-type APIResponse = {
-  json: () => Promise<Response>;
-}
-
-export async function POST(): Promise<Response> {
+export const POST: APIRoute = async ({ request }) => {
   try {
-    if (!import.meta.env.VERCEL_DEPLOY_HOOK) {
-      return new Response(
-        JSON.stringify({
-          error: 'Deploy hook not configured'
-        }), 
-        { 
-          status: 500,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
+    const deployHook = import.meta.env.VERCEL_DEPLOY_HOOK;
+    
+    if (!deployHook) {
+      return new Response(JSON.stringify({ error: 'Deploy hook not configured' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
 
-    const response = await fetch(import.meta.env.VERCEL_DEPLOY_HOOK, {
-      method: 'POST',
+    const response = await fetch(deployHook, {
+      method: 'POST'
     });
 
     if (!response.ok) {
-      throw new Error(`Deploy hook failed: ${response.status}`);
+      throw new Error('Deploy hook failed');
     }
 
-    return new Response(
-      JSON.stringify({
-        success: true,
-        message: 'Build triggered successfully'
-      }), 
-      { 
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+    
   } catch (error) {
-    return new Response(
-      JSON.stringify({
-        error: error instanceof Error ? error.message : 'Unknown error'
-      }), 
-      { 
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
+    return new Response(JSON.stringify({ error: 'Failed to trigger build' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 }
