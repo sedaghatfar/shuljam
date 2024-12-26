@@ -1,49 +1,52 @@
+// src/pages/api/rebuild.ts
 export const prerender = false;
 
-export async function POST() {
-  try {
-    console.log('API endpoint triggered'); // Debug log
+// Define the response type
+type APIResponse = {
+  json: () => Promise<Response>;
+}
 
+export async function POST(): Promise<Response> {
+  try {
     if (!import.meta.env.VERCEL_DEPLOY_HOOK) {
-      console.error('Missing VERCEL_DEPLOY_HOOK');
-      return new Response(JSON.stringify({
-        error: 'Configuration error: Deploy hook not found'
-      }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
-      });
+      return new Response(
+        JSON.stringify({
+          error: 'Deploy hook not configured'
+        }), 
+        { 
+          status: 500,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
     }
 
-    const deployHook = import.meta.env.VERCEL_DEPLOY_HOOK;
-    console.log('Attempting to trigger deploy hook');
-
-    const response = await fetch(deployHook, {
+    const response = await fetch(import.meta.env.VERCEL_DEPLOY_HOOK, {
       method: 'POST',
     });
 
     if (!response.ok) {
-      throw new Error(`Deploy hook failed with status: ${response.status}`);
+      throw new Error(`Deploy hook failed: ${response.status}`);
     }
 
-    const result = await response.json();
-    console.log('Deploy hook response:', result);
-
-    return new Response(JSON.stringify({
-      success: true,
-      message: 'Deployment triggered'
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
-
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: 'Build triggered successfully'
+      }), 
+      { 
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
   } catch (error) {
-    console.error('Error in rebuild endpoint:', error);
-    return new Response(JSON.stringify({
-      error: 'Failed to trigger deployment',
-      details: error.message
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return new Response(
+      JSON.stringify({
+        error: error instanceof Error ? error.message : 'Unknown error'
+      }), 
+      { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
   }
 }
