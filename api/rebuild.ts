@@ -1,17 +1,14 @@
-import type { APIRoute } from 'astro';
+export const config = {
+  runtime: 'nodejs18.x',
+};
 
-export const prerender = false;
-
-export const POST: APIRoute = async () => {
+export default async function handler(req, res) {
   try {
-    const deployHook = import.meta.env.VERCEL_DEPLOY_HOOK;
+    const deployHook = process.env.VERCEL_DEPLOY_HOOK;
 
     if (!deployHook) {
       console.error('Deploy hook not configured');
-      return new Response(
-        JSON.stringify({ error: 'Deploy hook not configured' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
+      return res.status(500).json({ error: 'Deploy hook not configured' });
     }
 
     console.log('Triggering deploy hook:', deployHook);
@@ -24,16 +21,12 @@ export const POST: APIRoute = async () => {
     }
 
     console.log('Deploy hook triggered successfully');
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
-
+    return res.status(200).json({ success: true });
   } catch (error) {
     console.error('Error triggering deploy hook:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to trigger build', details: error.message }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    return res.status(500).json({
+      error: 'Failed to trigger build',
+      details: error.message,
+    });
   }
-};
+}
