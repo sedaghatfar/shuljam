@@ -1,14 +1,20 @@
 export const config = {
-  runtime: 'nodejs18.x',
+  runtime: 'edge', // Use the "edge" runtime
 };
 
-export default async function handler(req, res) {
+export default async function handler(req: Request): Promise<Response> {
   try {
     const deployHook = process.env.VERCEL_DEPLOY_HOOK;
 
     if (!deployHook) {
       console.error('Deploy hook not configured');
-      return res.status(500).json({ error: 'Deploy hook not configured' });
+      return new Response(
+        JSON.stringify({ error: 'Deploy hook not configured' }),
+        {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
     }
 
     console.log('Triggering deploy hook:', deployHook);
@@ -21,12 +27,18 @@ export default async function handler(req, res) {
     }
 
     console.log('Deploy hook triggered successfully');
-    return res.status(200).json({ success: true });
+    return new Response(
+      JSON.stringify({ success: true }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
   } catch (error) {
     console.error('Error triggering deploy hook:', error);
-    return res.status(500).json({
-      error: 'Failed to trigger build',
-      details: error.message,
-    });
+    return new Response(
+      JSON.stringify({
+        error: 'Failed to trigger build',
+        details: error.message,
+      }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 }
